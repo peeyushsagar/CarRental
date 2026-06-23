@@ -32,8 +32,34 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+];
+
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    // Allow server-to-server or postman requests (no origin)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin matches exactly or matches domain ignoring protocols/trailing slashes
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (!allowed) return false;
+      const cleanAllowed = allowed.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      const cleanOrigin = origin.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      return cleanAllowed === cleanOrigin;
+    });
+
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  },
   credentials: true,
 }));
 
