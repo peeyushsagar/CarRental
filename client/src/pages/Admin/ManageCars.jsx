@@ -20,6 +20,7 @@ const ManageCars = () => {
   const [transmission, setTransmission] = useState('Manual');
   const [pricePerDay, setPricePerDay] = useState('');
   const [status, setStatus] = useState('available');
+  const [color, setColor] = useState('');
   
   // Image Upload states
   const [uploadingCarId, setUploadingCarId] = useState(null);
@@ -53,6 +54,7 @@ const ManageCars = () => {
     setTransmission('Manual');
     setPricePerDay('');
     setStatus('available');
+    setColor('');
     setSelectedFiles([]);
     setShowForm(true);
     setMsg('');
@@ -69,6 +71,7 @@ const ManageCars = () => {
     setTransmission(car.transmission);
     setPricePerDay(car.pricePerDay);
     setStatus(car.status);
+    setColor(car.color || '');
     setSelectedFiles([]);
     setShowForm(true);
     setMsg('');
@@ -125,6 +128,7 @@ const ManageCars = () => {
       fuelType,
       transmission,
       pricePerDay: Number(pricePerDay),
+      color,
       status,
     };
 
@@ -300,6 +304,14 @@ const ManageCars = () => {
                 </div>
               </div>
 
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Car Color</label>
+                  <input type="text" placeholder="e.g. Red, Black, White" value={color} onChange={(e) => setColor(e.target.value)} />
+                </div>
+              </div>
+
+
               <div className="form-group" style={{ marginBottom: '1.5rem', marginTop: '1rem' }}>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Vehicle Photos</label>
                 <input
@@ -401,7 +413,7 @@ const ManageCars = () => {
                   <tr key={car._id}>
                     <td>
                       <strong>{car.brand} {car.name}</strong>
-                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>{car.model} ({car.year})</div>
+                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>{car.model} ({car.year}) | Color: {car.color || 'Unspecified'}</div>
                     </td>
                     <td>
                       {car.fuelType} / {car.transmission}

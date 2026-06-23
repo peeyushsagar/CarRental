@@ -153,6 +153,10 @@ const CarsListing = () => {
                     <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Year:</span>
                     <span>{car.year}</span>
                   </div>
+                  <div className="spec-item">
+                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Color:</span>
+                    <span>{car.color || 'Unspecified'}</span>
+                  </div>
                 </div>
 
                 <div className="car-actions">

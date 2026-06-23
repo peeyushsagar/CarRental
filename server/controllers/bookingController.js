@@ -180,8 +180,18 @@ export const updateBookingStatus = async (req, res) => {
 
     const updatedBooking = await booking.save();
 
-    // Trigger update notification
+    // Trigger update notification & automatic car status change
     const car = await Car.findById(booking.carId);
+    if (car) {
+      if (status === 'confirmed') {
+        car.status = 'booked';
+        await car.save();
+      } else if (status === 'completed' || status === 'rejected') {
+        car.status = 'available';
+        await car.save();
+      }
+    }
+
     const customer = await User.findById(booking.customerId);
     if (car && customer) {
       sendBookingEmail(updatedBooking, car, customer);

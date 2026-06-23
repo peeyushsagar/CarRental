@@ -136,6 +136,10 @@ const CarDetails = () => {
                   <td style={{ padding: '8px 0', fontWeight: '600' }}>Model Year</td>
                   <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb' }}>{car.year}</td>
                 </tr>
+                <tr>
+                  <td style={{ padding: '8px 0', fontWeight: '600' }}>Exterior Color</td>
+                  <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb' }}>{car.color || 'Unspecified'}</td>
+                </tr>
               </tbody>
             </table>
           </div>

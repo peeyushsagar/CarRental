@@ -246,7 +246,7 @@ const BookingPage = () => {
               )}
             </div>
             <div>
-              <span style={{ fontSize: '0.8rem', color: '#9ca3af', textTransform: 'uppercase' }}>{car.brand}</span>
+              <span style={{ fontSize: '0.8rem', color: '#9ca3af', textTransform: 'uppercase' }}>{car.brand} {car.color ? `| ${car.color}` : ''}</span>
               <h4 style={{ fontSize: '1rem', fontWeight: '700' }}>{car.name}</h4>
             </div>
           </div>

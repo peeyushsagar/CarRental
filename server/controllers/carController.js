@@ -63,7 +63,7 @@ export const getCarById = async (req, res) => {
 // @route   POST /api/cars
 // @access  Private/Admin
 export const createCar = async (req, res) => {
-  const { name, brand, model, year, fuelType, transmission, pricePerDay } = req.body;
+  const { name, brand, model, year, fuelType, transmission, pricePerDay, color } = req.body;
 
   try {
     const car = await Car.create({
@@ -74,6 +74,7 @@ export const createCar = async (req, res) => {
       fuelType,
       transmission,
       pricePerDay,
+      color: color || 'Unspecified',
       status: 'available',
     });
 
@@ -87,7 +88,7 @@ export const createCar = async (req, res) => {
 // @route   PUT /api/cars/:id
 // @access  Private/Admin
 export const updateCar = async (req, res) => {
-  const { name, brand, model, year, fuelType, transmission, pricePerDay, status } = req.body;
+  const { name, brand, model, year, fuelType, transmission, pricePerDay, color, status } = req.body;
 
   try {
     const car = await Car.findById(req.params.id);
@@ -100,6 +101,7 @@ export const updateCar = async (req, res) => {
       car.fuelType = fuelType || car.fuelType;
       car.transmission = transmission || car.transmission;
       car.pricePerDay = pricePerDay || car.pricePerDay;
+      car.color = color !== undefined ? color : car.color;
       car.status = status || car.status;
 
       const updatedCar = await car.save();

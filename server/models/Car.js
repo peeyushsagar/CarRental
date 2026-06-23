@@ -32,6 +32,10 @@ const carSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Please add price per day'],
     },
+    color: {
+      type: String,
+      default: 'Unspecified',
+    },
     images: {
       type: [String],
       default: [],
