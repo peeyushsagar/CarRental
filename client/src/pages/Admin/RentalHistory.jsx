@@ -216,30 +216,48 @@ const RentalHistory = () => {
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
                   <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Aadhaar Card Reference</span>
                   <span style={{ fontWeight: '700', color: '#60a5fa', fontSize: '1.1rem' }}>{selectedUser.aadhaar}</span>
-                  {selectedUser.aadhaarImage && (
-                    <a 
-                      href={selectedUser.aadhaarImage.startsWith('http') ? selectedUser.aadhaarImage : `${API_BASE_URL}${selectedUser.aadhaarImage}`} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#10b981', textDecoration: 'none' }}
-                    >
-                      👁️ View Aadhaar Document
-                    </a>
+                  {selectedUser.aadhaarImage ? (
+                    <div style={{ marginTop: '12px', textAlign: 'center' }}>
+                      <img 
+                        src={selectedUser.aadhaarImage.startsWith('http') ? selectedUser.aadhaarImage : `${API_BASE_URL}${selectedUser.aadhaarImage}`} 
+                        alt="Aadhaar Card" 
+                        style={{ width: '100%', maxHeight: '150px', objectFit: 'contain', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)' }}
+                      />
+                      <a 
+                        href={selectedUser.aadhaarImage.startsWith('http') ? selectedUser.aadhaarImage : `${API_BASE_URL}${selectedUser.aadhaarImage}`} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        style={{ display: 'block', marginTop: '8px', fontSize: '0.8rem', color: '#60a5fa', textDecoration: 'underline' }}
+                      >
+                        Open in New Tab
+                      </a>
+                    </div>
+                  ) : (
+                    <span style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#6b7280' }}>No Aadhaar Image Uploaded</span>
                   )}
                 </div>
 
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
                   <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Driving License Reference</span>
                   <span style={{ fontWeight: '700', color: '#60a5fa', fontSize: '1.1rem' }}>{selectedUser.drivingLicense}</span>
-                  {selectedUser.drivingLicenseImage && (
-                    <a 
-                      href={selectedUser.drivingLicenseImage.startsWith('http') ? selectedUser.drivingLicenseImage : `${API_BASE_URL}${selectedUser.drivingLicenseImage}`} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#10b981', textDecoration: 'none' }}
-                    >
-                      👁️ View License Document
-                    </a>
+                  {selectedUser.drivingLicenseImage ? (
+                    <div style={{ marginTop: '12px', textAlign: 'center' }}>
+                      <img 
+                        src={selectedUser.drivingLicenseImage.startsWith('http') ? selectedUser.drivingLicenseImage : `${API_BASE_URL}${selectedUser.drivingLicenseImage}`} 
+                        alt="Driving License" 
+                        style={{ width: '100%', maxHeight: '150px', objectFit: 'contain', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)' }}
+                      />
+                      <a 
+                        href={selectedUser.drivingLicenseImage.startsWith('http') ? selectedUser.drivingLicenseImage : `${API_BASE_URL}${selectedUser.drivingLicenseImage}`} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        style={{ display: 'block', marginTop: '8px', fontSize: '0.8rem', color: '#60a5fa', textDecoration: 'underline' }}
+                      >
+                        Open in New Tab
+                      </a>
+                    </div>
+                  ) : (
+                    <span style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#6b7280' }}>No License Image Uploaded</span>
                   )}
                 </div>
               </div>
