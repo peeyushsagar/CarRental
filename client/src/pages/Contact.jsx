@@ -28,20 +28,17 @@ const Contact = () => {
         {/* Contact Info Cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div className="glass" style={{ padding: '2rem' }}>
-            <span style={{ fontSize: '2rem' }}>📍</span>
             <h3 style={{ margin: '0.8rem 0 0.4rem 0', fontWeight: '700' }}>Office Location</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.95rem' }}>{settings.address}</p>
           </div>
 
           <div className="glass" style={{ padding: '2rem' }}>
-            <span style={{ fontSize: '2rem' }}>📞</span>
             <h3 style={{ margin: '0.8rem 0 0.4rem 0', fontWeight: '700' }}>Call Us</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.95rem' }}>{settings.phone}</p>
             <p style={{ color: '#6b7280', fontSize: '0.8rem' }}>Mon-Sun: 24 Hours Availability</p>
           </div>
 
           <div className="glass" style={{ padding: '2rem' }}>
-            <span style={{ fontSize: '2rem' }}>✉️</span>
             <h3 style={{ margin: '0.8rem 0 0.4rem 0', fontWeight: '700' }}>Write to Us</h3>
             <p style={{ color: '#60a5fa', fontSize: '0.95rem', fontWeight: '600' }}>{settings.email}</p>
           </div>
@@ -53,7 +50,7 @@ const Contact = () => {
           
           {submitted && (
             <div className="alert alert-success">
-              ✅ Thank you! Your message has been received. Our team will contact you shortly.
+              Thank you! Your message has been received. Our team will contact you shortly.
             </div>
           )}
 

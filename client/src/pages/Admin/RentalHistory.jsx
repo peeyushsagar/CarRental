@@ -95,23 +95,23 @@ const RentalHistory = () => {
       {/* Sidebar */}
       <aside className="sidebar glass">
         <NavLink to="/admin" end className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📊 Overview
+          Overview
         </NavLink>
         <NavLink to="/admin/cars" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          🚗 Manage Cars
+          Manage Cars
         </NavLink>
         <NavLink to="/admin/bookings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📅 Manage Bookings
+          Manage Bookings
         </NavLink>
         <NavLink to="/admin/users" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          👥 Registered Users
+          Registered Users
         </NavLink>
         <NavLink to="/admin/history" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📜 Rental History
+          Rental History
         </NavLink>
         {isSuperAdmin && (
           <NavLink to="/admin/settings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-            ⚙️ Business Settings
+            Business Settings
           </NavLink>
         )}
       </aside>

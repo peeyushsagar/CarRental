@@ -83,19 +83,16 @@ const Home = () => {
       <section className="container" style={{ marginTop: '3rem', marginBottom: '3rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '25px' }}>
           <div className="glass" style={{ padding: '2rem', textAlign: 'center' }}>
-            <span style={{ fontSize: '2.5rem' }}>🛡️</span>
             <h3 style={{ margin: '1rem 0 0.5rem 0', fontWeight: '700' }}>Fully Insured</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>All our rental vehicles are fully insured so you can drive with absolute peace of mind.</p>
           </div>
 
           <div className="glass" style={{ padding: '2rem', textAlign: 'center' }}>
-            <span style={{ fontSize: '2.5rem' }}>⚙️</span>
             <h3 style={{ margin: '1rem 0 0.5rem 0', fontWeight: '700' }}>Maintained Fleets</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>Vehicles undergo constant inspections and routine maintenance schedules to assure peak safety.</p>
           </div>
 
           <div className="glass" style={{ padding: '2rem', textAlign: 'center' }}>
-            <span style={{ fontSize: '2.5rem' }}>📞</span>
             <h3 style={{ margin: '1rem 0 0.5rem 0', fontWeight: '700' }}>24/7 Support</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>Got issues or queries? Contact our dedicated business helpline anytime, anywhere.</p>
           </div>

@@ -46,11 +46,13 @@ app.use(cors({
     // Allow server-to-server or postman requests (no origin)
     if (!origin) return callback(null, true);
     
+    const cleanOrigin = origin.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    const isVercelApp = cleanOrigin.endsWith('.vercel.app');
+
     // Check if origin matches exactly or matches domain ignoring protocols/trailing slashes
-    const isAllowed = allowedOrigins.some(allowed => {
+    const isAllowed = isVercelApp || allowedOrigins.some(allowed => {
       if (!allowed) return false;
       const cleanAllowed = allowed.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      const cleanOrigin = origin.replace(/^https?:\/\//, '').replace(/\/$/, '');
       return cleanAllowed === cleanOrigin;
     });
 

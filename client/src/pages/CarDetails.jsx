@@ -142,11 +142,11 @@ const CarDetails = () => {
 
           {car.status === 'maintenance' ? (
             <div className="alert alert-warning" style={{ margin: 0 }}>
-              🛠️ <strong>Maintenance Mode:</strong> This vehicle is temporarily unavailable due to scheduled maintenance. Please choose another vehicle or check back later.
+              <strong>Maintenance Mode:</strong> This vehicle is temporarily unavailable due to scheduled maintenance. Please choose another vehicle or check back later.
             </div>
           ) : car.status === 'inactive' ? (
             <div className="alert alert-danger" style={{ margin: 0 }}>
-              🚫 This vehicle is currently inactive and cannot be rented.
+              This vehicle is currently inactive and cannot be rented.
             </div>
           ) : (
             <button onClick={handleBookNow} className="btn-full" style={{ padding: '14px', fontSize: '1.05rem' }}>

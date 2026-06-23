@@ -120,7 +120,6 @@ const BookingPage = () => {
     return (
       <div className="container">
         <div className="form-card glass animate-fade-in" style={{ maxWidth: '600px', textAlign: 'center', padding: '3rem' }}>
-          <span style={{ fontSize: '4rem' }}>🎉</span>
           <h2 style={{ fontSize: '2rem', fontWeight: '800', margin: '1rem 0' }}>Booking Request Received!</h2>
           <p style={{ color: '#9ca3af', marginBottom: '2rem' }}>
             Your booking request has been registered and sent to our admin team for verification. A confirmation email has been dispatched to your email address.
@@ -243,7 +242,7 @@ const BookingPage = () => {
               {car.images && car.images[0] ? (
                 <img src={car.images[0].startsWith('http') ? car.images[0] : `${API_BASE_URL}${car.images[0]}`} style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }} alt="" />
               ) : (
-                <span style={{ fontSize: '1.2rem' }}>🚗</span>
+                <span style={{ fontSize: '0.75rem', color: '#6b7280' }}>No Image</span>
               )}
             </div>
             <div>

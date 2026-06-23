@@ -71,23 +71,23 @@ const ManageUsers = () => {
       {/* Sidebar */}
       <aside className="sidebar glass">
         <NavLink to="/admin" end className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📊 Overview
+          Overview
         </NavLink>
         <NavLink to="/admin/cars" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          🚗 Manage Cars
+          Manage Cars
         </NavLink>
         <NavLink to="/admin/bookings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📅 Manage Bookings
+          Manage Bookings
         </NavLink>
         <NavLink to="/admin/users" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          👥 Registered Users
+          Registered Users
         </NavLink>
         <NavLink to="/admin/history" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📜 Rental History
+          Rental History
         </NavLink>
         {isSuperAdmin && (
           <NavLink to="/admin/settings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-            ⚙️ Business Settings
+            Business Settings
           </NavLink>
         )}
       </aside>
@@ -239,7 +239,6 @@ const ManageUsers = () => {
               </div>
               {selectedUser.deletionRequested && (
                 <div style={{ gridColumn: 'span 2', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '10px 15px', borderRadius: '8px', color: '#f87171', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span>⚠️</span>
                   <span>User has requested account deletion!</span>
                 </div>
               )}
@@ -279,14 +278,14 @@ const ManageUsers = () => {
                   }}
                   onClick={() => handleToggleBlock(selectedUser._id, selectedUser.status)}
                 >
-                  {selectedUser.status === 'blocked' ? '✅ Unblock User' : '🚫 Block User'}
+                  {selectedUser.status === 'blocked' ? 'Unblock User' : 'Block User'}
                 </button>
                 <button
                   className="btn-full btn-danger"
                   style={{ flex: 1, padding: '10px' }}
                   onClick={() => handleDeleteUser(selectedUser._id)}
                 >
-                  🗑️ Delete User
+                  Delete User
                 </button>
               </div>
             )}

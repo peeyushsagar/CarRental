@@ -184,7 +184,6 @@ const Profile = () => {
 
         {user.deletionRequested ? (
           <div className="alert alert-warning" style={{ background: 'rgba(245, 158, 11, 0.1)', borderColor: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', padding: '12px 18px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>⚠️</span>
             <div>
               <strong>Deletion Request Pending Approval</strong>
               <div style={{ fontSize: '0.8rem', marginTop: '2px', color: '#fcd34d' }}>An administrator is reviewing your request. Please contact support if you wish to cancel this.</div>
@@ -197,7 +196,7 @@ const Profile = () => {
             onClick={() => setShowDeleteModal(true)}
             style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#f87171', border: '1px solid rgba(239, 68, 68, 0.3)' }}
           >
-            ⚠️ Request Account Deletion
+            Request Account Deletion
           </button>
         )}
       </div>

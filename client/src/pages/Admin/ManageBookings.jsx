@@ -61,23 +61,23 @@ const ManageBookings = () => {
       {/* Sidebar */}
       <aside className="sidebar glass">
         <NavLink to="/admin" end className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📊 Overview
+          Overview
         </NavLink>
         <NavLink to="/admin/cars" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          🚗 Manage Cars
+          Manage Cars
         </NavLink>
         <NavLink to="/admin/bookings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📅 Manage Bookings
+          Manage Bookings
         </NavLink>
         <NavLink to="/admin/users" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          👥 Registered Users
+          Registered Users
         </NavLink>
         <NavLink to="/admin/history" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          📜 Rental History
+          Rental History
         </NavLink>
         {isSuperAdmin && (
           <NavLink to="/admin/settings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-            ⚙️ Business Settings
+            Business Settings
           </NavLink>
         )}
       </aside>
@@ -121,8 +121,8 @@ const ManageBookings = () => {
                     </td>
                     <td>
                       <div><strong>{b.customerDetails?.name}</strong></div>
-                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>📞 {b.customerDetails?.phone}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>✉️ {b.customerDetails?.email}</div>
+                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Phone: {b.customerDetails?.phone}</div>
+                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Email: {b.customerDetails?.email}</div>
                     </td>
                     <td>
                       {b.carId ? `${b.carId.brand} ${b.carId.name}` : 'Deleted Car'}
@@ -148,14 +148,14 @@ const ManageBookings = () => {
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem' }}>
                         {b.aadhaarImage ? (
                           <a href={b.aadhaarImage.startsWith('http') ? b.aadhaarImage : `${API_BASE_URL}${b.aadhaarImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
-                            📄 Aadhaar Image
+                            Aadhaar Image
                           </a>
                         ) : (
                           <span style={{ color: '#6b7280' }}>No Aadhaar Upload</span>
                         )}
                         {b.drivingLicenseImage ? (
                           <a href={b.drivingLicenseImage.startsWith('http') ? b.drivingLicenseImage : `${API_BASE_URL}${b.drivingLicenseImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
-                            📄 DL Image
+                            DL Image
                           </a>
                         ) : (
                           <span style={{ color: '#6b7280' }}>No DL Upload</span>

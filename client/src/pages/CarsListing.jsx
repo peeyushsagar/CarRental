@@ -142,15 +142,15 @@ const CarsListing = () => {
 
                 <div className="car-specs">
                   <div className="spec-item">
-                    <span>⛽</span>
+                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Fuel:</span>
                     <span>{car.fuelType}</span>
                   </div>
                   <div className="spec-item">
-                    <span>⚙️</span>
+                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Transmission:</span>
                     <span>{car.transmission}</span>
                   </div>
                   <div className="spec-item">
-                    <span>📅</span>
+                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Year:</span>
                     <span>{car.year}</span>
                   </div>
                 </div>

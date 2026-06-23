@@ -45,7 +45,7 @@ const AdminDashboard = () => {
         </NavLink>
         {isSuperAdmin && (
           <NavLink to="/admin/settings" className={({ isActive }) => (isActive ? 'sidebar-link active' : 'sidebar-link')}>
-          Business Settings
+            Business Settings
           </NavLink>
         )}
       </aside>
