@@ -241,7 +241,7 @@ const BookingPage = () => {
           <div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '1.5rem' }}>
             <div style={{ width: '80px', height: '50px', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border)', borderRadius: '6px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {car.images && car.images[0] ? (
-                <img src={`${API_BASE_URL}${car.images[0]}`} style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }} alt="" />
+                <img src={car.images[0].startsWith('http') ? car.images[0] : `${API_BASE_URL}${car.images[0]}`} style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }} alt="" />
               ) : (
                 <span style={{ fontSize: '1.2rem' }}>🚗</span>
               )}

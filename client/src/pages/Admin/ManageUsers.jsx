@@ -196,9 +196,22 @@ const ManageUsers = () => {
         <div className="modal-backdrop" onClick={closeModal} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="glass animate-fade-in" onClick={(e) => e.stopPropagation()} style={{ width: '90%', maxWidth: '550px', maxHeight: '90vh', borderRadius: '16px', border: '1px solid var(--border)', padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-              <div>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: '800' }}>{selectedUser.name}</h2>
-                <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>{selectedUser.email}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                {selectedUser.profileImage ? (
+                  <img 
+                    src={selectedUser.profileImage.startsWith('http') ? selectedUser.profileImage : `${API_BASE_URL}${selectedUser.profileImage}`} 
+                    alt="avatar" 
+                    style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border)' }} 
+                  />
+                ) : (
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold', color: '#fff' }}>
+                    {selectedUser.name.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <div>
+                  <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0 }}>{selectedUser.name}</h2>
+                  <p style={{ color: '#9ca3af', fontSize: '0.9rem', margin: 0 }}>{selectedUser.email}</p>
+                </div>
               </div>
               <button onClick={closeModal} style={{ background: 'none', border: 'none', color: '#9ca3af', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
             </div>

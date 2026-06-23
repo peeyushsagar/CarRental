@@ -75,7 +75,7 @@ const CarDetails = () => {
         <div className="car-gallery">
           <div className="gallery-main glass">
             {car.images && car.images.length > 0 ? (
-              <img src={`${API_BASE_URL}${car.images[activeImage]}`} alt={car.name} />
+              <img src={car.images[activeImage].startsWith('http') ? car.images[activeImage] : `${API_BASE_URL}${car.images[activeImage]}`} alt={car.name} />
             ) : (
               renderCarPlaceholder()
             )}
@@ -89,7 +89,7 @@ const CarDetails = () => {
                   className={`thumb ${activeImage === idx ? 'active' : ''}`}
                   onClick={() => setActiveImage(idx)}
                 >
-                  <img src={`${API_BASE_URL}${img}`} alt="" />
+                  <img src={img.startsWith('http') ? img : `${API_BASE_URL}${img}`} alt="" />
                 </div>
               ))}
             </div>

@@ -147,14 +147,14 @@ const ManageBookings = () => {
                     <td>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem' }}>
                         {b.aadhaarImage ? (
-                          <a href={`${API_BASE_URL}${b.aadhaarImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
+                          <a href={b.aadhaarImage.startsWith('http') ? b.aadhaarImage : `${API_BASE_URL}${b.aadhaarImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
                             📄 Aadhaar Image
                           </a>
                         ) : (
                           <span style={{ color: '#6b7280' }}>No Aadhaar Upload</span>
                         )}
                         {b.drivingLicenseImage ? (
-                          <a href={`${API_BASE_URL}${b.drivingLicenseImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
+                          <a href={b.drivingLicenseImage.startsWith('http') ? b.drivingLicenseImage : `${API_BASE_URL}${b.drivingLicenseImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
                             📄 DL Image
                           </a>
                         ) : (

@@ -33,7 +33,7 @@ const Navbar = () => {
     <nav className="navbar">
       <Link to="/" className="nav-logo">
         {settings.logoUrl ? (
-          <img src={`${API_BASE_URL}${settings.logoUrl}`} alt="logo" />
+          <img src={settings.logoUrl.startsWith('http') ? settings.logoUrl : `${API_BASE_URL}${settings.logoUrl}`} alt="logo" />
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ color: '#2563eb', fontSize: '1.6rem' }}>⚡</span>

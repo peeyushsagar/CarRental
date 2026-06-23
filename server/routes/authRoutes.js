@@ -11,8 +11,10 @@ import {
   deleteUser,
   updateProfile,
   requestAccountDeletion,
+  uploadProfilePhoto,
 } from '../controllers/authController.js';
 import { protect, authorize } from '../middleware/auth.js';
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
@@ -20,6 +22,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/me', protect, getMe);
 router.put('/profile', protect, updateProfile);
+router.post('/profile/photo', protect, upload.single('profileImage'), uploadProfilePhoto);
 router.put('/request-delete', protect, requestAccountDeletion);
 router.get('/users', protect, authorize('admin', 'superadmin'), getAllUsers);
 router.put('/users/:id/status', protect, authorize('admin', 'superadmin'), updateUserStatus);

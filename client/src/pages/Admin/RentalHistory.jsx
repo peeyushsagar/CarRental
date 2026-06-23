@@ -218,7 +218,7 @@ const RentalHistory = () => {
                   <span style={{ fontWeight: '700', color: '#60a5fa', fontSize: '1.1rem' }}>{selectedUser.aadhaar}</span>
                   {selectedUser.aadhaarImage && (
                     <a 
-                      href={`${API_BASE_URL}${selectedUser.aadhaarImage}`} 
+                      href={selectedUser.aadhaarImage.startsWith('http') ? selectedUser.aadhaarImage : `${API_BASE_URL}${selectedUser.aadhaarImage}`} 
                       target="_blank" 
                       rel="noreferrer" 
                       style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#10b981', textDecoration: 'none' }}
@@ -233,7 +233,7 @@ const RentalHistory = () => {
                   <span style={{ fontWeight: '700', color: '#60a5fa', fontSize: '1.1rem' }}>{selectedUser.drivingLicense}</span>
                   {selectedUser.drivingLicenseImage && (
                     <a 
-                      href={`${API_BASE_URL}${selectedUser.drivingLicenseImage}`} 
+                      href={selectedUser.drivingLicenseImage.startsWith('http') ? selectedUser.drivingLicenseImage : `${API_BASE_URL}${selectedUser.drivingLicenseImage}`} 
                       target="_blank" 
                       rel="noreferrer" 
                       style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#10b981', textDecoration: 'none' }}

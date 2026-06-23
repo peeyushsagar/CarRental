@@ -119,7 +119,7 @@ const CarsListing = () => {
             <div key={car._id} className="car-card glass">
               <div className="car-image-container">
                 {car.images && car.images.length > 0 ? (
-                  <img src={`${API_BASE_URL}${car.images[0]}`} alt={car.name} />
+                  <img src={car.images[0].startsWith('http') ? car.images[0] : `${API_BASE_URL}${car.images[0]}`} alt={car.name} />
                 ) : (
                   renderCarPlaceholder()
                 )}

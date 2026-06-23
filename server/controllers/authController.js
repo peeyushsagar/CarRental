@@ -45,6 +45,7 @@ export const registerUser = async (req, res) => {
         email: user.email,
         role: user.role,
         phone: user.phone,
+        profileImage: user.profileImage || '',
         token: generateToken(user._id),
       });
     } else {
@@ -80,6 +81,7 @@ export const loginUser = async (req, res) => {
         email: user.email,
         role: user.role,
         phone: user.phone || '',
+        profileImage: user.profileImage || '',
         deletionRequested: user.deletionRequested || false,
         token: generateToken(user._id),
       });
@@ -104,6 +106,7 @@ export const getMe = async (req, res) => {
         email: user.email,
         role: user.role,
         phone: user.phone || '',
+        profileImage: user.profileImage || '',
         deletionRequested: user.deletionRequested || false,
       });
     } else {
@@ -272,6 +275,7 @@ export const updateProfile = async (req, res) => {
         email: updatedUser.email,
         role: updatedUser.role,
         phone: updatedUser.phone || '',
+        profileImage: updatedUser.profileImage || '',
         deletionRequested: updatedUser.deletionRequested || false,
       });
     } else {
@@ -296,6 +300,38 @@ export const requestAccountDeletion = async (req, res) => {
     } else {
       res.status(404).json({ message: 'User not found' });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc    Upload profile photo
+// @route   POST /api/auth/profile/photo
+// @access  Private
+export const uploadProfilePhoto = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'Please upload an image file' });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const photoUrl = req.file.path && req.file.path.startsWith('http') ? req.file.path : `/uploads/${req.file.filename}`;
+    user.profileImage = photoUrl;
+
+    const updatedUser = await user.save();
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      phone: updatedUser.phone || '',
+      profileImage: updatedUser.profileImage || '',
+      deletionRequested: updatedUser.deletionRequested || false,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

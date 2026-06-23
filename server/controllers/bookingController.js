@@ -71,10 +71,12 @@ export const createBooking = async (req, res) => {
 
     if (req.files) {
       if (req.files.aadhaarImage && req.files.aadhaarImage[0]) {
-        aadhaarImage = `/uploads/${req.files.aadhaarImage[0].filename}`;
+        const file = req.files.aadhaarImage[0];
+        aadhaarImage = file.path && file.path.startsWith('http') ? file.path : `/uploads/${file.filename}`;
       }
       if (req.files.drivingLicenseImage && req.files.drivingLicenseImage[0]) {
-        drivingLicenseImage = `/uploads/${req.files.drivingLicenseImage[0].filename}`;
+        const file = req.files.drivingLicenseImage[0];
+        drivingLicenseImage = file.path && file.path.startsWith('http') ? file.path : `/uploads/${file.filename}`;
       }
     }
 

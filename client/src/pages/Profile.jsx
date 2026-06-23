@@ -10,6 +10,10 @@ const Profile = () => {
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   
+  // Profile Photo Upload States
+  const [photoFile, setPhotoFile] = useState(null);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+
   // Deletion Request States
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [confirmText, setConfirmText] = useState('');
@@ -23,6 +27,38 @@ const Profile = () => {
       </div>
     );
   }
+
+  const handlePhotoChange = (e) => {
+    setPhotoFile(e.target.files[0]);
+  };
+
+  const handleUploadPhoto = async (e) => {
+    e.preventDefault();
+    if (!photoFile) return;
+
+    setIsUploadingPhoto(true);
+    setSuccessMsg('');
+    setErrorMsg('');
+
+    const formData = new FormData();
+    formData.append('profileImage', photoFile);
+
+    try {
+      const { data } = await axios.post(`${API_BASE_URL}/api/auth/profile/photo`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      updateLocalUser({ profileImage: data.profileImage });
+      setSuccessMsg('Profile photo updated successfully!');
+      setPhotoFile(null);
+    } catch (error) {
+      console.error(error);
+      setErrorMsg(error.response?.data?.message || 'Failed to upload profile photo.');
+    } finally {
+      setIsUploadingPhoto(false);
+    }
+  };
 
   const handleUpdatePhone = async (e) => {
     e.preventDefault();
@@ -69,8 +105,18 @@ const Profile = () => {
       {/* Account Info Card */}
       <div className="glass" style={{ padding: '2rem', borderRadius: '16px', marginBottom: '2rem', border: '1px solid var(--border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '1.5rem' }}>
-          <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>
-            {user.name.charAt(0).toUpperCase()}
+          <div>
+            {user.profileImage ? (
+              <img 
+                src={user.profileImage.startsWith('http') ? user.profileImage : `${API_BASE_URL}${user.profileImage}`} 
+                alt="profile" 
+                style={{ width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border)' }} 
+              />
+            ) : (
+              <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            )}
           </div>
           <div>
             <h2 style={{ fontSize: '1.4rem', fontWeight: '700', margin: 0 }}>{user.name}</h2>
@@ -83,11 +129,30 @@ const Profile = () => {
 
         <hr style={{ border: '0', borderTop: '1px solid var(--border)', margin: '1.5rem 0' }} />
 
+        {/* Upload Profile Photo */}
+        <form onSubmit={handleUploadPhoto} style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '1.5rem' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: '#f3f4f6' }}>Profile Photo</h3>
+          {successMsg && <div className="alert alert-success" style={{ padding: '10px 15px', marginBottom: '1rem' }}>{successMsg}</div>}
+          {errorMsg && <div className="alert alert-danger" style={{ padding: '10px 15px', marginBottom: '1rem' }}>{errorMsg}</div>}
+
+          <div style={{ display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <input 
+              type="file" 
+              accept="image/*" 
+              onChange={handlePhotoChange} 
+              style={{ background: 'none', border: 'none', padding: 0, color: '#9ca3af' }}
+            />
+            {photoFile && (
+              <button type="submit" className="nav-btn nav-btn-primary" style={{ padding: '8px 16px', fontSize: '0.85rem' }} disabled={isUploadingPhoto}>
+                {isUploadingPhoto ? 'Uploading...' : 'Upload Photo'}
+              </button>
+            )}
+          </div>
+        </form>
+
         {/* Change Mobile Form */}
         <form onSubmit={handleUpdatePhone}>
           <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: '#f3f4f6' }}>Contact Information</h3>
-          {successMsg && <div className="alert alert-success" style={{ padding: '10px 15px', marginBottom: '1rem' }}>{successMsg}</div>}
-          {errorMsg && <div className="alert alert-danger" style={{ padding: '10px 15px', marginBottom: '1rem' }}>{errorMsg}</div>}
           
           <div className="form-group" style={{ marginBottom: '1.5rem' }}>
             <label htmlFor="profilePhone">Mobile Number</label>

@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
         email: data.email,
         role: data.role,
         phone: data.phone || '',
+        profileImage: data.profileImage || '',
         deletionRequested: data.deletionRequested || false,
       });
       return { success: true };
@@ -73,6 +74,7 @@ export const AuthProvider = ({ children }) => {
         email: data.email,
         role: data.role,
         phone: data.phone || '',
+        profileImage: data.profileImage || '',
         deletionRequested: false,
       });
       return { success: true };

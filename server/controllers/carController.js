@@ -145,7 +145,7 @@ export const uploadCarImages = async (req, res) => {
       return res.status(400).json({ message: 'Please upload files' });
     }
 
-    const imageUrls = req.files.map((file) => `/uploads/${file.filename}`);
+    const imageUrls = req.files.map((file) => file.path && file.path.startsWith('http') ? file.path : `/uploads/${file.filename}`);
     car.images.push(...imageUrls);
 
     const updatedCar = await car.save();

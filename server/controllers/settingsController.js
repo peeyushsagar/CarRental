@@ -45,8 +45,7 @@ export const uploadLogo = async (req, res) => {
     }
 
     const settings = await BusinessSettings.getSettings();
-    // Return relative URL for static loading
-    const logoUrl = `/uploads/${req.file.filename}`;
+    const logoUrl = req.file.path && req.file.path.startsWith('http') ? req.file.path : `/uploads/${req.file.filename}`;
     settings.logoUrl = logoUrl;
 
     const updatedSettings = await settings.save();
