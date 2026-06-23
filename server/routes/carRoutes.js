@@ -6,6 +6,7 @@ import {
   updateCar,
   deleteCar,
   uploadCarImages,
+  deleteCarImage,
 } from '../controllers/carController.js';
 import { protect, authorize } from '../middleware/auth.js';
 import upload from '../middleware/upload.js';
@@ -25,6 +26,12 @@ router.post(
   authorize('admin', 'superadmin'),
   upload.array('images', 5),
   uploadCarImages
+);
+router.delete(
+  '/:id/images',
+  protect,
+  authorize('admin', 'superadmin'),
+  deleteCarImage
 );
 
 export default router;

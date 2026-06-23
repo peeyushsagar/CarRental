@@ -154,3 +154,26 @@ export const uploadCarImages = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// @desc    Delete a car image
+// @route   DELETE /api/cars/:id/images
+// @access  Private/Admin
+export const deleteCarImage = async (req, res) => {
+  const { imageUrl } = req.body;
+
+  try {
+    const car = await Car.findById(req.params.id);
+
+    if (!car) {
+      return res.status(404).json({ message: 'Car not found' });
+    }
+
+    car.images = car.images.filter((img) => img !== imageUrl);
+
+    const updatedCar = await car.save();
+    res.json(updatedCar);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+

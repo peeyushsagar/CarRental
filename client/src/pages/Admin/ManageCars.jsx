@@ -53,6 +53,7 @@ const ManageCars = () => {
     setTransmission('Manual');
     setPricePerDay('');
     setStatus('available');
+    setSelectedFiles([]);
     setShowForm(true);
     setMsg('');
     setError('');
@@ -68,6 +69,7 @@ const ManageCars = () => {
     setTransmission(car.transmission);
     setPricePerDay(car.pricePerDay);
     setStatus(car.status);
+    setSelectedFiles([]);
     setShowForm(true);
     setMsg('');
     setError('');
@@ -76,11 +78,37 @@ const ManageCars = () => {
   const handleDelete = async (carId) => {
     if (!window.confirm('Are you sure you want to delete this car?')) return;
     try {
-      await axios.delete(`${API_BASE_URL}/api/cars/${carId}`);
+      await axios.delete(`${API_BASE_URL}/api/cars/${carId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       setMsg('Car deleted successfully.');
       fetchCars();
     } catch (err) {
       setError(err.response?.data?.message || 'Error deleting car.');
+    }
+  };
+
+  const handleDeleteImage = async (imageUrl) => {
+    if (!window.confirm('Are you sure you want to delete this image?')) return;
+    try {
+      const token = localStorage.getItem('token');
+      const { data } = await axios.delete(`${API_BASE_URL}/api/cars/${editingCar._id}/images`, {
+        data: { imageUrl },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      setEditingCar((prev) => ({
+        ...prev,
+        images: prev.images.filter((img) => img !== imageUrl),
+      }));
+      setMsg('Image removed successfully.');
+      fetchCars();
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to delete image.');
     }
   };
 
@@ -101,14 +129,40 @@ const ManageCars = () => {
     };
 
     try {
+      let savedCar;
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       if (editingCar) {
-        await axios.put(`${API_BASE_URL}/api/cars/${editingCar._id}`, carData);
+        const { data } = await axios.put(`${API_BASE_URL}/api/cars/${editingCar._id}`, carData, config);
+        savedCar = data;
         setMsg('Car updated successfully.');
       } else {
-        await axios.post(`${API_BASE_URL}/api/cars`, carData);
+        const { data } = await axios.post(`${API_BASE_URL}/api/cars`, carData, config);
+        savedCar = data;
         setMsg('New car added successfully.');
       }
+
+      // If we have selected files, upload them for this car!
+      if (selectedFiles && selectedFiles.length > 0) {
+        const formData = new FormData();
+        for (let i = 0; i < selectedFiles.length; i++) {
+          formData.append('images', selectedFiles[i]);
+        }
+        await axios.post(`${API_BASE_URL}/api/cars/${savedCar._id}/images`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
+
       setShowForm(false);
+      setSelectedFiles([]);
       fetchCars();
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to save car record.');
@@ -117,7 +171,7 @@ const ManageCars = () => {
 
   const handleImageUploadSubmit = async (e, carId) => {
     e.preventDefault();
-    if (selectedFiles.length === 0) return;
+    if (!selectedFiles || selectedFiles.length === 0) return;
 
     const formData = new FormData();
     for (let i = 0; i < selectedFiles.length; i++) {
@@ -128,6 +182,7 @@ const ManageCars = () => {
       await axios.post(`${API_BASE_URL}/api/cars/${carId}/images`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
       setMsg('Images uploaded successfully.');
@@ -244,6 +299,75 @@ const ManageCars = () => {
                   </select>
                 </div>
               </div>
+
+              <div className="form-group" style={{ marginBottom: '1.5rem', marginTop: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Vehicle Photos</label>
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={(e) => setSelectedFiles(e.target.files)}
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '12px',
+                    padding: '12px',
+                    width: '100%',
+                    color: '#fff',
+                    outline: 'none',
+                    fontSize: '0.9rem'
+                  }}
+                />
+                <p style={{ fontSize: '0.78rem', color: '#9ca3af', marginTop: '6px' }}>
+                  {editingCar ? 'Add new images to this vehicle.' : 'Upload one or more images for this vehicle.'}
+                </p>
+
+                {selectedFiles && selectedFiles.length > 0 && (
+                  <div style={{ marginTop: '10px', fontSize: '0.82rem', color: '#60a5fa' }}>
+                    Selected for upload: {selectedFiles.length} file(s)
+                  </div>
+                )}
+              </div>
+
+              {editingCar && editingCar.images && editingCar.images.length > 0 && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Existing Photos</label>
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    {editingCar.images.map((imgUrl, i) => (
+                      <div key={i} style={{ position: 'relative', width: '80px', height: '60px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border)' }}>
+                        <img 
+                          src={imgUrl.startsWith('http') ? imgUrl : `${API_BASE_URL}${imgUrl}`} 
+                          alt="" 
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteImage(imgUrl)}
+                          style={{
+                            position: 'absolute',
+                            top: '2px',
+                            right: '2px',
+                            background: 'rgba(239, 68, 68, 0.85)',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '4px',
+                            width: '18px',
+                            height: '18px',
+                            fontSize: '0.7rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer'
+                          }}
+                          title="Remove Image"
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div style={{ display: 'flex', gap: '15px', marginTop: '1.5rem' }}>
                 <button type="submit" className="nav-btn nav-btn-primary" style={{ padding: '0 25px', height: '42px' }}>
