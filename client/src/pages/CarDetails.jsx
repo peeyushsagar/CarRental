@@ -103,7 +103,7 @@ const CarDetails = () => {
             {car.name}
           </h1>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '2rem' }}>
+          <div className="responsive-grid-2" style={{ gap: '15px', marginBottom: '2rem' }}>
             <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px 16px', borderRadius: '8px' }}>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', display: 'block' }}>Daily Price</span>
               {car.discount > 0 ? (

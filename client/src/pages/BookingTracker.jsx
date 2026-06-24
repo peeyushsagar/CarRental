@@ -79,7 +79,7 @@ const BookingTracker = () => {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', fontSize: '0.95rem' }}>
+            <div className="responsive-grid-2" style={{ fontSize: '0.95rem' }}>
               <div>
                 <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Renter Name</span>
                 <span>{booking.customerDetails?.name}</span>

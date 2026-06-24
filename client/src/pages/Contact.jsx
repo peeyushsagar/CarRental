@@ -23,7 +23,7 @@ const Contact = () => {
     <div className="container animate-fade-in">
       <h1 className="page-title">Contact Support</h1>
       
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '40px', marginTop: '2rem' }}>
+      <div className="responsive-grid-12" style={{ marginTop: '2rem' }}>
         
         {/* Contact Info Cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>

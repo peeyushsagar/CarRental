@@ -149,7 +149,7 @@ const BookingPage = () => {
 
   return (
     <div className="container animate-fade-in" style={{ marginTop: '2rem' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '40px' }}>
+      <div className="responsive-grid-15">
         
         {/* Booking Form */}
         <div className="glass" style={{ padding: '2.5rem' }}>

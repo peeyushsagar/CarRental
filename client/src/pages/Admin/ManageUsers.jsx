@@ -216,7 +216,7 @@ const ManageUsers = () => {
               <button onClick={closeModal} style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '15px', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+            <div className="responsive-grid-12" style={{ gap: '15px', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
               <div>
                 <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>System Role</span>
                 <span style={{ fontWeight: '600' }}>{selectedUser.role.toUpperCase()}</span>

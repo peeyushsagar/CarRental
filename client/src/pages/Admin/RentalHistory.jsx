@@ -196,7 +196,7 @@ const RentalHistory = () => {
             <div style={{ flex: 1, overflowY: 'auto', paddingRight: '5px' }}>
               
               {/* Contact & Physical Address */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '2rem' }}>
+              <div className="responsive-grid-2" style={{ marginBottom: '2rem' }}>
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
                   <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Primary Phone</span>
                   <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{selectedUser.phone}</span>
@@ -212,7 +212,7 @@ const RentalHistory = () => {
               </div>
 
               {/* Document references */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '2rem' }}>
+              <div className="responsive-grid-2" style={{ marginBottom: '2rem' }}>
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
                   <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Aadhaar Card Reference</span>
                   <span style={{ fontWeight: '700', color: 'var(--accent-light)', fontSize: '1.1rem' }}>{selectedUser.aadhaar}</span>

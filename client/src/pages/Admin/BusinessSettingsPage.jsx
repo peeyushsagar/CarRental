@@ -110,7 +110,7 @@ const BusinessSettingsPage = () => {
       </aside>
 
       {/* Main dashboard content */}
-      <main className="dashboard-content" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '30px' }}>
+      <main className="dashboard-content settings-grid">
         
         {/* Settings Form */}
         <div>

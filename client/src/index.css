@@ -890,7 +890,107 @@ a {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments & helper classes */
+
+/* Responsive Grid Helpers */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.responsive-grid-15 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+}
+
+.responsive-grid-12 {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+}
+
+/* Mobile Menu Toggle & Navigation Drawer */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 99;
+  box-shadow: var(--shadow-lg);
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  list-style: none;
+}
+
+.mobile-nav-link {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 8px 0;
+  display: block;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--accent-light);
+}
+
+.mobile-nav-user {
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 @media (max-width: 968px) {
   .hero {
     grid-template-columns: 1fr;
@@ -928,16 +1028,37 @@ a {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+  .nav-links {
+    display: none !important;
+  }
+  
+  .nav-user-desktop {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .mobile-nav.open {
+    display: flex;
+  }
+
+  .responsive-grid-2,
+  .responsive-grid-15,
+  .responsive-grid-12,
+  .settings-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .navbar {
     padding: 0 4%;
   }
+}
 
-  .nav-links {
-    display: none;
-    /* simple burger menu could be added, or stack vertically */
-  }
-
+@media (max-width: 576px) {
   .footer-grid {
     grid-template-columns: 1fr;
   }
