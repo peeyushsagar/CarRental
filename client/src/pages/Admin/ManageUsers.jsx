@@ -96,7 +96,7 @@ const ManageUsers = () => {
       <main className="dashboard-content">
         <div style={{ marginBottom: '2rem' }}>
           <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>Registered Users Directory</h1>
-          <p style={{ color: '#9ca3af' }}>View joining details, system roles, and account access logs</p>
+          <p style={{ color: 'var(--text-secondary)' }}>View joining details, system roles, and account access logs</p>
         </div>
 
         {error && <div className="alert alert-danger">{error}</div>}
@@ -104,7 +104,7 @@ const ManageUsers = () => {
         {loading ? (
           <h3>Loading users directory...</h3>
         ) : users.length === 0 ? (
-          <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: '#9ca3af' }}>
+          <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
             <p>No registered users found.</p>
           </div>
         ) : (
@@ -125,9 +125,9 @@ const ManageUsers = () => {
                 {users.map((u) => (
                   <tr key={u._id} style={{ cursor: 'pointer' }} onClick={() => handleUserClick(u)}>
                     <td>
-                      <strong style={{ color: '#60a5fa' }}>{u.name}</strong>
+                      <strong style={{ color: 'var(--accent-light)' }}>{u.name}</strong>
                       {currentUser && currentUser._id === u._id && (
-                        <span style={{ fontSize: '0.75rem', color: '#9ca3af', marginLeft: '6px' }}>(You)</span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: '6px' }}>(You)</span>
                       )}
                     </td>
                     <td>{u.email}</td>
@@ -152,7 +152,7 @@ const ManageUsers = () => {
                       <div className="btn-actions" onClick={(e) => e.stopPropagation()}>
                         <button 
                           className="btn-icon" 
-                          style={{ padding: '6px 12px', fontSize: '0.8rem', background: 'rgba(255, 255, 255, 0.05)', color: '#60a5fa', borderColor: 'var(--border)' }}
+                          style={{ padding: '6px 12px', fontSize: '0.8rem', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--accent-light)', borderColor: 'var(--border)' }}
                           onClick={() => handleUserClick(u)}
                         >
                           Logs
@@ -210,29 +210,29 @@ const ManageUsers = () => {
                 )}
                 <div>
                   <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0 }}>{selectedUser.name}</h2>
-                  <p style={{ color: '#9ca3af', fontSize: '0.9rem', margin: 0 }}>{selectedUser.email}</p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>{selectedUser.email}</p>
                 </div>
               </div>
-              <button onClick={closeModal} style={{ background: 'none', border: 'none', color: '#9ca3af', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+              <button onClick={closeModal} style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '15px', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
               <div>
-                <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>System Role</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>System Role</span>
                 <span style={{ fontWeight: '600' }}>{selectedUser.role.toUpperCase()}</span>
               </div>
               <div>
-                <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Account Status</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Account Status</span>
                 <span className={`car-badge ${selectedUser.status === 'blocked' ? 'badge-booked' : 'badge-available'}`} style={{ position: 'static', textTransform: 'uppercase', display: 'inline-block', marginTop: '4px' }}>
                   {selectedUser.status || 'active'}
                 </span>
               </div>
               <div>
-                <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Mobile Number</span>
-                <span style={{ fontWeight: '600', color: '#60a5fa' }}>{selectedUser.phone || 'N/A'}</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Mobile Number</span>
+                <span style={{ fontWeight: '600', color: 'var(--accent-light)' }}>{selectedUser.phone || 'N/A'}</span>
               </div>
               <div>
-                <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Joining Date</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Joining Date</span>
                 <span style={{ fontWeight: '600' }}>
                   {new Date(selectedUser.createdAt).toLocaleDateString()}
                 </span>
@@ -244,22 +244,22 @@ const ManageUsers = () => {
               )}
             </div>
 
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: '#f9fafb' }}>Login Session History</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--text-primary)' }}>Login Session History</h3>
 
             <div style={{ flex: 1, overflowY: 'auto', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem', minHeight: '120px', maxHeight: '250px' }}>
               {selectedUser.loginLogs && selectedUser.loginLogs.length > 0 ? (
                 <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                   {selectedUser.loginLogs.map((log, index) => (
                     <li key={index} style={{ padding: '8px 12px', borderBottom: index === selectedUser.loginLogs.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.03)', display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem' }}>
-                      <span style={{ color: '#9ca3af' }}>Session #{selectedUser.loginLogs.length - index}</span>
-                      <strong style={{ color: '#e5e7eb' }}>
+                      <span style={{ color: 'var(--text-secondary)' }}>Session #{selectedUser.loginLogs.length - index}</span>
+                      <strong style={{ color: 'var(--text-primary)' }}>
                         {new Date(log).toLocaleDateString()} at {new Date(log).toLocaleTimeString()}
                       </strong>
                     </li>
                   )).reverse()}
                 </ul>
               ) : (
-                <div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', color: '#6b7280', fontSize: '0.9rem' }}>
+                <div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                   No logins logged yet.
                 </div>
               )}

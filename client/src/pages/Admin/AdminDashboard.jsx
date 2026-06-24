@@ -55,10 +55,10 @@ const AdminDashboard = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <div>
             <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>Admin Dashboard</h1>
-            <p style={{ color: '#9ca3af' }}>Manage cars, bookings, notifications and analytics</p>
+            <p style={{ color: 'var(--text-secondary)' }}>Manage cars, bookings, notifications and analytics</p>
           </div>
           <span className="glass" style={{ padding: '8px 16px', fontSize: '0.85rem', fontWeight: '600' }}>
-            Logged in as: <span style={{ color: '#60a5fa' }}>{user.name}</span>
+            Logged in as: <span style={{ color: 'var(--accent-light)' }}>{user.name}</span>
           </span>
         </div>
 
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
                   </AreaChart>
                 </ResponsiveContainer>
               ) : (
-                <div style={{ display: 'flex', height: '80%', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
+                <div style={{ display: 'flex', height: '80%', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
                   No completed booking revenue logs available for plotting.
                 </div>
               )}

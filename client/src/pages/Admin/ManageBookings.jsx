@@ -86,7 +86,7 @@ const ManageBookings = () => {
       <main className="dashboard-content">
         <div style={{ marginBottom: '2rem' }}>
           <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>Manage Booking Requests</h1>
-          <p style={{ color: '#9ca3af' }}>Verify driver licenses, accept or reject booking requests, and log completions</p>
+          <p style={{ color: 'var(--text-secondary)' }}>Verify driver licenses, accept or reject booking requests, and log completions</p>
         </div>
 
         {msg && <div className="alert alert-success">{msg}</div>}
@@ -95,7 +95,7 @@ const ManageBookings = () => {
         {loading ? (
           <h3>Fetching bookings history...</h3>
         ) : bookings.length === 0 ? (
-          <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: '#9ca3af' }}>
+          <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
             <p>No bookings have been submitted yet.</p>
           </div>
         ) : (
@@ -117,12 +117,12 @@ const ManageBookings = () => {
                 {bookings.map((b) => (
                   <tr key={b._id}>
                     <td>
-                      <strong style={{ color: '#60a5fa' }}>{b.bookingId}</strong>
+                      <strong style={{ color: 'var(--accent-light)' }}>{b.bookingId}</strong>
                     </td>
                     <td>
                       <div><strong>{b.customerDetails?.name}</strong></div>
-                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Phone: {b.customerDetails?.phone}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Email: {b.customerDetails?.email}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Phone: {b.customerDetails?.phone}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Email: {b.customerDetails?.email}</div>
                     </td>
                     <td>
                       {b.carId ? `${b.carId.brand} ${b.carId.name}` : 'Deleted Car'}
@@ -147,18 +147,18 @@ const ManageBookings = () => {
                     <td>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem' }}>
                         {b.aadhaarImage ? (
-                          <a href={b.aadhaarImage.startsWith('http') ? b.aadhaarImage : `${API_BASE_URL}${b.aadhaarImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
+                          <a href={b.aadhaarImage.startsWith('http') ? b.aadhaarImage : `${API_BASE_URL}${b.aadhaarImage}`} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-light)' }}>
                             Aadhaar Image
                           </a>
                         ) : (
-                          <span style={{ color: '#6b7280' }}>No Aadhaar Upload</span>
+                          <span style={{ color: 'var(--text-muted)' }}>No Aadhaar Upload</span>
                         )}
                         {b.drivingLicenseImage ? (
-                          <a href={b.drivingLicenseImage.startsWith('http') ? b.drivingLicenseImage : `${API_BASE_URL}${b.drivingLicenseImage}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>
+                          <a href={b.drivingLicenseImage.startsWith('http') ? b.drivingLicenseImage : `${API_BASE_URL}${b.drivingLicenseImage}`} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-light)' }}>
                             DL Image
                           </a>
                         ) : (
-                          <span style={{ color: '#6b7280' }}>No DL Upload</span>
+                          <span style={{ color: 'var(--text-muted)' }}>No DL Upload</span>
                         )}
                       </div>
                     </td>
@@ -184,12 +184,12 @@ const ManageBookings = () => {
                           <button
                             onClick={() => handleUpdateStatus(b._id, 'completed', 'paid')}
                             className="btn-icon"
-                            style={{ borderColor: '#60a5fa', color: '#60a5fa' }}
+                            style={{ borderColor: '#60a5fa', color: 'var(--accent-light)' }}
                           >
                             Mark Completed
                           </button>
                         )}
-                        {b.status === 'completed' && <span style={{ color: '#9ca3af', fontSize: '0.85rem' }}>Ended</span>}
+                        {b.status === 'completed' && <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Ended</span>}
                         {b.status === 'rejected' && <span style={{ color: '#ef4444', fontSize: '0.85rem' }}>Rejected</span>}
                       </div>
                     </td>

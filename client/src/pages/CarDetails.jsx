@@ -66,7 +66,7 @@ const CarDetails = () => {
 
   return (
     <div className="container animate-fade-in" style={{ marginTop: '2rem' }}>
-      <Link to="/cars" style={{ color: '#60a5fa', fontWeight: '500' }}>
+      <Link to="/cars" style={{ color: 'var(--accent-light)', fontWeight: '500' }}>
         ← Back to Browse
       </Link>
 
@@ -105,12 +105,20 @@ const CarDetails = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '2rem' }}>
             <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px 16px', borderRadius: '8px' }}>
-              <span style={{ color: '#9ca3af', fontSize: '0.8rem', display: 'block' }}>Daily Price</span>
-              <strong style={{ fontSize: '1.5rem', color: '#10b981' }}>₹{car.pricePerDay}</strong>
+              <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', display: 'block' }}>Daily Price</span>
+              {car.discount > 0 ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px' }}>
+                  <span style={{ textDecoration: 'line-through', color: 'var(--text-secondary)', fontSize: '1rem' }}>₹{car.pricePerDay}</span>
+                  <strong style={{ fontSize: '1.5rem', color: '#10b981' }}>₹{Math.round(car.pricePerDay * (1 - car.discount / 100))}</strong>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', padding: '2px 6px', borderRadius: '4px', fontWeight: '700' }}>{car.discount}% OFF</span>
+                </div>
+              ) : (
+                <strong style={{ fontSize: '1.5rem', color: '#10b981', display: 'block', marginTop: '4px' }}>₹{car.pricePerDay}</strong>
+              )}
             </div>
 
             <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px 16px', borderRadius: '8px' }}>
-              <span style={{ color: '#9ca3af', fontSize: '0.8rem', display: 'block' }}>Availability Status</span>
+              <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', display: 'block' }}>Availability Status</span>
               <span className={`car-badge badge-${car.status}`} style={{ position: 'static', display: 'inline-block', marginTop: '6px' }}>
                 {car.status}
               </span>
@@ -122,23 +130,23 @@ const CarDetails = () => {
               Vehicle Specifications
             </h3>
             
-            <table style={{ width: '100%', fontSize: '0.9rem', color: '#9ca3af' }}>
+            <table style={{ width: '100%', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
               <tbody>
                 <tr>
                   <td style={{ padding: '8px 0', fontWeight: '600' }}>Transmission</td>
-                  <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb' }}>{car.transmission}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'right', color: 'var(--text-primary)' }}>{car.transmission}</td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 0', fontWeight: '600' }}>Fuel Type</td>
-                  <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb' }}>{car.fuelType}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'right', color: 'var(--text-primary)' }}>{car.fuelType}</td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 0', fontWeight: '600' }}>Model Year</td>
-                  <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb' }}>{car.year}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'right', color: 'var(--text-primary)' }}>{car.year}</td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 0', fontWeight: '600' }}>Exterior Color</td>
-                  <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb' }}>{car.color || 'Unspecified'}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'right', color: 'var(--text-primary)' }}>{car.color || 'Unspecified'}</td>
                 </tr>
               </tbody>
             </table>

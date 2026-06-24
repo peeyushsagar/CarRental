@@ -121,12 +121,12 @@ const BookingPage = () => {
       <div className="container">
         <div className="form-card glass animate-fade-in" style={{ maxWidth: '600px', textAlign: 'center', padding: '3rem' }}>
           <h2 style={{ fontSize: '2rem', fontWeight: '800', margin: '1rem 0' }}>Booking Request Received!</h2>
-          <p style={{ color: '#9ca3af', marginBottom: '2rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
             Your booking request has been registered and sent to our admin team for verification. A confirmation email has been dispatched to your email address.
           </p>
 
           <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.5rem', textAlign: 'left', marginBottom: '2rem' }}>
-            <p style={{ marginBottom: '8px' }}><strong>Booking ID:</strong> <span style={{ color: '#60a5fa' }}>{successBooking.bookingId}</span></p>
+            <p style={{ marginBottom: '8px' }}><strong>Booking ID:</strong> <span style={{ color: 'var(--accent-light)' }}>{successBooking.bookingId}</span></p>
             <p style={{ marginBottom: '8px' }}><strong>Vehicle:</strong> {car.brand} {car.name}</p>
             <p style={{ marginBottom: '8px' }}><strong>Pickup:</strong> {new Date(successBooking.pickupDate).toDateString()}</p>
             <p style={{ marginBottom: '8px' }}><strong>Return:</strong> {new Date(successBooking.returnDate).toDateString()}</p>
@@ -242,24 +242,24 @@ const BookingPage = () => {
               {car.images && car.images[0] ? (
                 <img src={car.images[0].startsWith('http') ? car.images[0] : `${API_BASE_URL}${car.images[0]}`} style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }} alt="" />
               ) : (
-                <span style={{ fontSize: '0.75rem', color: '#6b7280' }}>No Image</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>No Image</span>
               )}
             </div>
             <div>
-              <span style={{ fontSize: '0.8rem', color: '#9ca3af', textTransform: 'uppercase' }}>{car.brand} {car.color ? `| ${car.color}` : ''}</span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>{car.brand} {car.color ? `| ${car.color}` : ''}</span>
               <h4 style={{ fontSize: '1rem', fontWeight: '700' }}>{car.name}</h4>
             </div>
           </div>
 
-          <table style={{ width: '100%', fontSize: '0.9rem', color: '#9ca3af', marginBottom: '1.5rem' }}>
+          <table style={{ width: '100%', fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
             <tbody>
               <tr>
                 <td style={{ padding: '8px 0' }}>Daily Rate</td>
-                <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb', fontWeight: '600' }}>₹{car.pricePerDay}</td>
+                <td style={{ padding: '8px 0', textAlign: 'right', color: 'var(--text-primary)', fontWeight: '600' }}>₹{car.pricePerDay}</td>
               </tr>
               <tr>
                 <td style={{ padding: '8px 0' }}>Rental Period</td>
-                <td style={{ padding: '8px 0', textAlign: 'right', color: '#f9fafb', fontWeight: '600' }}>{priceDetails.days} Days</td>
+                <td style={{ padding: '8px 0', textAlign: 'right', color: 'var(--text-primary)', fontWeight: '600' }}>{priceDetails.days} Days</td>
               </tr>
             </tbody>
           </table>

@@ -36,6 +36,12 @@ const carSchema = new mongoose.Schema(
       type: String,
       default: 'Unspecified',
     },
+    discount: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 100,
+    },
     images: {
       type: [String],
       default: [],

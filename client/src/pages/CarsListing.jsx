@@ -111,7 +111,7 @@ const CarsListing = () => {
         </div>
       ) : cars.length === 0 ? (
         <div style={{ textAlign: 'center', margin: '4rem 0' }} className="glass">
-          <p style={{ padding: '3rem', color: '#9ca3af' }}>No vehicles match your search criteria. Try modifying your filters.</p>
+          <p style={{ padding: '3rem', color: 'var(--text-secondary)' }}>No vehicles match your search criteria. Try modifying your filters.</p>
         </div>
       ) : (
         <div className="grid-cars">
@@ -135,26 +135,38 @@ const CarsListing = () => {
                     <h3>{car.name}</h3>
                   </div>
                   <div className="car-price">
-                    ₹{car.pricePerDay}
-                    <span>/day</span>
+                    {car.discount > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        <div>
+                          <span style={{ textDecoration: 'line-through', color: 'var(--text-secondary)', fontSize: '0.82rem', marginRight: '6px' }}>₹{car.pricePerDay}</span>
+                          <span style={{ fontSize: '1.25rem', color: '#10b981', fontWeight: '800' }}>₹{Math.round(car.pricePerDay * (1 - car.discount / 100))}</span>
+                        </div>
+                        <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', padding: '1px 5px', borderRadius: '3px', fontWeight: '700', marginTop: '2px' }}>{car.discount}% OFF</span>
+                      </div>
+                    ) : (
+                      <div>
+                        ₹{car.pricePerDay}
+                        <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>/day</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 <div className="car-specs">
                   <div className="spec-item">
-                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Fuel:</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: '500' }}>Fuel:</span>
                     <span>{car.fuelType}</span>
                   </div>
                   <div className="spec-item">
-                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Transmission:</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: '500' }}>Transmission:</span>
                     <span>{car.transmission}</span>
                   </div>
                   <div className="spec-item">
-                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Year:</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: '500' }}>Year:</span>
                     <span>{car.year}</span>
                   </div>
                   <div className="spec-item">
-                    <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: '500' }}>Color:</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: '500' }}>Color:</span>
                     <span>{car.color || 'Unspecified'}</span>
                   </div>
                 </div>

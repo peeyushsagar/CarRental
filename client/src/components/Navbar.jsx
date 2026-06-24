@@ -90,8 +90,8 @@ const Navbar = () => {
 
         {user ? (
           <>
-            <span style={{ fontSize: '0.9rem', color: '#9ca3af' }}>
-              Hi, <strong style={{ color: '#f9fafb' }}>{user.name}</strong> ({user.role})
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+              Hi, <strong style={{ color: 'var(--text-primary)' }}>{user.name}</strong> ({user.role})
             </span>
             {isAdmin ? (
               <Link to="/admin" className="nav-btn nav-btn-primary">

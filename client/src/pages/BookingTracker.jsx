@@ -32,7 +32,7 @@ const BookingTracker = () => {
       case 'confirmed': return { color: '#10b981', background: 'rgba(16, 185, 129, 0.12)', border: '1px solid rgba(16, 185, 129, 0.2)' };
       case 'rejected': return { color: '#ef4444', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.2)' };
       case 'completed': return { color: '#3b82f6', background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.2)' };
-      default: return { color: '#f9fafb', background: 'rgba(255, 255, 255, 0.05)' };
+      default: return { color: 'var(--text-primary)', background: 'rgba(255, 255, 255, 0.05)' };
     }
   };
 
@@ -71,8 +71,8 @@ const BookingTracker = () => {
           <div className="glass animate-fade-in" style={{ padding: '2rem', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
               <div>
-                <span style={{ fontSize: '0.8rem', color: '#9ca3af', display: 'block', textTransform: 'uppercase' }}>Reference ID</span>
-                <strong style={{ fontSize: '1.2rem', color: '#60a5fa' }}>{booking.bookingId}</strong>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'block', textTransform: 'uppercase' }}>Reference ID</span>
+                <strong style={{ fontSize: '1.2rem', color: 'var(--accent-light)' }}>{booking.bookingId}</strong>
               </div>
               <div style={{ ...getStatusStyle(booking.status), padding: '6px 16px', borderRadius: '30px', fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase' }}>
                 {booking.status}
@@ -81,27 +81,27 @@ const BookingTracker = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', fontSize: '0.95rem' }}>
               <div>
-                <span style={{ color: '#9ca3af', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Renter Name</span>
+                <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Renter Name</span>
                 <span>{booking.customerDetails?.name}</span>
               </div>
               <div>
-                <span style={{ color: '#9ca3af', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Vehicle Selected</span>
+                <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Vehicle Selected</span>
                 <span>{booking.carId?.brand} {booking.carId?.name || booking.carId?.model}</span>
               </div>
               <div>
-                <span style={{ color: '#9ca3af', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Pickup Location/Date</span>
+                <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Pickup Location/Date</span>
                 <span>{new Date(booking.pickupDate).toDateString()}</span>
               </div>
               <div>
-                <span style={{ color: '#9ca3af', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Return Date</span>
+                <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Return Date</span>
                 <span>{new Date(booking.returnDate).toDateString()}</span>
               </div>
               <div>
-                <span style={{ color: '#9ca3af', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Amount Owed</span>
+                <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Amount Owed</span>
                 <span style={{ fontWeight: '600', color: '#10b981' }}>₹{booking.totalAmount}</span>
               </div>
               <div>
-                <span style={{ color: '#9ca3af', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Payment Status</span>
+                <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.8rem', marginBottom: '4px' }}>Payment Status</span>
                 <span style={{ textTransform: 'uppercase', fontSize: '0.85rem', fontWeight: '700', color: booking.paymentStatus === 'paid' ? '#10b981' : '#f59e0b' }}>
                   {booking.paymentStatus}
                 </span>

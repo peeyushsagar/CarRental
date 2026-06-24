@@ -12,7 +12,7 @@ export const getCars = async (req, res) => {
     // Filter out inactive cars for public users (unless admin status query is specifically passed)
     if (!status) {
       query.status = { $ne: 'inactive' };
-    } else {
+    } else if (status !== 'all') {
       query.status = status;
     }
 
@@ -63,7 +63,7 @@ export const getCarById = async (req, res) => {
 // @route   POST /api/cars
 // @access  Private/Admin
 export const createCar = async (req, res) => {
-  const { name, brand, model, year, fuelType, transmission, pricePerDay, color } = req.body;
+  const { name, brand, model, year, fuelType, transmission, pricePerDay, color, discount } = req.body;
 
   try {
     const car = await Car.create({
@@ -75,6 +75,7 @@ export const createCar = async (req, res) => {
       transmission,
       pricePerDay,
       color: color || 'Unspecified',
+      discount: discount !== undefined ? Number(discount) : 0,
       status: 'available',
     });
 
@@ -88,7 +89,7 @@ export const createCar = async (req, res) => {
 // @route   PUT /api/cars/:id
 // @access  Private/Admin
 export const updateCar = async (req, res) => {
-  const { name, brand, model, year, fuelType, transmission, pricePerDay, color, status } = req.body;
+  const { name, brand, model, year, fuelType, transmission, pricePerDay, color, discount, status } = req.body;
 
   try {
     const car = await Car.findById(req.params.id);
@@ -102,6 +103,7 @@ export const updateCar = async (req, res) => {
       car.transmission = transmission || car.transmission;
       car.pricePerDay = pricePerDay || car.pricePerDay;
       car.color = color !== undefined ? color : car.color;
+      car.discount = discount !== undefined ? Number(discount) : car.discount;
       car.status = status || car.status;
 
       const updatedCar = await car.save();

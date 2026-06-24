@@ -39,7 +39,7 @@ const MyBookings = () => {
           <h3>Loading bookings list...</h3>
         </div>
       ) : bookings.length === 0 ? (
-        <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: '#9ca3af' }}>
+        <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
           <p>You have not booked any vehicles yet.</p>
         </div>
       ) : (
@@ -60,7 +60,7 @@ const MyBookings = () => {
               {bookings.map((b) => (
                 <tr key={b._id}>
                   <td>
-                    <strong style={{ color: '#60a5fa' }}>{b.bookingId}</strong>
+                    <strong style={{ color: 'var(--accent-light)' }}>{b.bookingId}</strong>
                   </td>
                   <td>
                     {b.carId ? `${b.carId.brand} ${b.carId.name}` : 'Deleted Vehicle'}

@@ -120,7 +120,7 @@ const RentalHistory = () => {
       <main className="dashboard-content">
         <div style={{ marginBottom: '2rem' }}>
           <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>Rental History</h1>
-          <p style={{ color: '#9ca3af' }}>Audit timestamps, customer details, and rented vehicle models</p>
+          <p style={{ color: 'var(--text-secondary)' }}>Audit timestamps, customer details, and rented vehicle models</p>
         </div>
 
         {error && <div className="alert alert-danger">{error}</div>}
@@ -128,7 +128,7 @@ const RentalHistory = () => {
         {loading ? (
           <h3>Loading rental logs...</h3>
         ) : bookings.length === 0 ? (
-          <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: '#9ca3af' }}>
+          <div className="glass" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
             <p>No bookings have been logged yet.</p>
           </div>
         ) : (
@@ -147,13 +147,13 @@ const RentalHistory = () => {
               <tbody>
                 {bookings.map((b) => (
                   <tr key={b._id}>
-                    <td style={{ fontSize: '0.88rem', color: '#9ca3af' }}>
+                    <td style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                       {new Date(b.createdAt).toLocaleDateString()} at{' '}
                       {new Date(b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </td>
                     <td>
                       <strong 
-                        style={{ color: '#60a5fa', cursor: 'pointer', textDecoration: 'underline' }}
+                        style={{ color: 'var(--accent-light)', cursor: 'pointer', textDecoration: 'underline' }}
                         onClick={() => handleCustomerClick(b)}
                         title="Click to view full user profile & dossier"
                       >
@@ -188,9 +188,9 @@ const RentalHistory = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
               <div>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: '800' }}>User Security Dossier</h2>
-                <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>{selectedUser.name} &bull; {selectedUser.email}</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{selectedUser.name} &bull; {selectedUser.email}</p>
               </div>
-              <button onClick={closeModal} style={{ background: 'none', border: 'none', color: '#9ca3af', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+              <button onClick={closeModal} style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
             </div>
 
             <div style={{ flex: 1, overflowY: 'auto', paddingRight: '5px' }}>
@@ -198,24 +198,24 @@ const RentalHistory = () => {
               {/* Contact & Physical Address */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '2rem' }}>
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
-                  <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Primary Phone</span>
-                  <span style={{ fontWeight: '600', color: '#e5e7eb' }}>{selectedUser.phone}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Primary Phone</span>
+                  <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{selectedUser.phone}</span>
                 </div>
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
-                  <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Emergency Contact</span>
-                  <span style={{ fontWeight: '600', color: '#e5e7eb' }}>{selectedUser.emergencyContact}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Emergency Contact</span>
+                  <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{selectedUser.emergencyContact}</span>
                 </div>
                 <div style={{ gridColumn: 'span 2', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
-                  <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Permanent Address</span>
-                  <span style={{ fontWeight: '500', color: '#e5e7eb' }}>{selectedUser.address}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Permanent Address</span>
+                  <span style={{ fontWeight: '500', color: 'var(--text-primary)' }}>{selectedUser.address}</span>
                 </div>
               </div>
 
               {/* Document references */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '2rem' }}>
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
-                  <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Aadhaar Card Reference</span>
-                  <span style={{ fontWeight: '700', color: '#60a5fa', fontSize: '1.1rem' }}>{selectedUser.aadhaar}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Aadhaar Card Reference</span>
+                  <span style={{ fontWeight: '700', color: 'var(--accent-light)', fontSize: '1.1rem' }}>{selectedUser.aadhaar}</span>
                   {selectedUser.aadhaarImage ? (
                     <div style={{ marginTop: '12px', textAlign: 'center' }}>
                       <img 
@@ -227,19 +227,19 @@ const RentalHistory = () => {
                         href={selectedUser.aadhaarImage.startsWith('http') ? selectedUser.aadhaarImage : `${API_BASE_URL}${selectedUser.aadhaarImage}`} 
                         target="_blank" 
                         rel="noreferrer" 
-                        style={{ display: 'block', marginTop: '8px', fontSize: '0.8rem', color: '#60a5fa', textDecoration: 'underline' }}
+                        style={{ display: 'block', marginTop: '8px', fontSize: '0.8rem', color: 'var(--accent-light)', textDecoration: 'underline' }}
                       >
                         Open in New Tab
                       </a>
                     </div>
                   ) : (
-                    <span style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#6b7280' }}>No Aadhaar Image Uploaded</span>
+                    <span style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>No Aadhaar Image Uploaded</span>
                   )}
                 </div>
 
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
-                  <span style={{ color: '#6b7280', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Driving License Reference</span>
-                  <span style={{ fontWeight: '700', color: '#60a5fa', fontSize: '1.1rem' }}>{selectedUser.drivingLicense}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', display: 'block' }}>Driving License Reference</span>
+                  <span style={{ fontWeight: '700', color: 'var(--accent-light)', fontSize: '1.1rem' }}>{selectedUser.drivingLicense}</span>
                   {selectedUser.drivingLicenseImage ? (
                     <div style={{ marginTop: '12px', textAlign: 'center' }}>
                       <img 
@@ -251,13 +251,13 @@ const RentalHistory = () => {
                         href={selectedUser.drivingLicenseImage.startsWith('http') ? selectedUser.drivingLicenseImage : `${API_BASE_URL}${selectedUser.drivingLicenseImage}`} 
                         target="_blank" 
                         rel="noreferrer" 
-                        style={{ display: 'block', marginTop: '8px', fontSize: '0.8rem', color: '#60a5fa', textDecoration: 'underline' }}
+                        style={{ display: 'block', marginTop: '8px', fontSize: '0.8rem', color: 'var(--accent-light)', textDecoration: 'underline' }}
                       >
                         Open in New Tab
                       </a>
                     </div>
                   ) : (
-                    <span style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: '#6b7280' }}>No License Image Uploaded</span>
+                    <span style={{ display: 'block', marginTop: '10px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>No License Image Uploaded</span>
                   )}
                 </div>
               </div>
@@ -265,21 +265,21 @@ const RentalHistory = () => {
               {/* Renter Statistics summary */}
               <div style={{ display: 'flex', gap: '20px', marginBottom: '2rem' }}>
                 <div className="glass" style={{ flex: 1, padding: '1rem', textAlign: 'center', borderRadius: '12px' }}>
-                  <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Booking Inquiries</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Booking Inquiries</span>
                   <div style={{ fontSize: '1.8rem', fontWeight: '800', marginTop: '5px' }}>{selectedUser.totalBookings}</div>
                 </div>
                 <div className="glass" style={{ flex: 1, padding: '1rem', textAlign: 'center', borderRadius: '12px' }}>
-                  <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Rents Executed</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Rents Executed</span>
                   <div style={{ fontSize: '1.8rem', fontWeight: '800', marginTop: '5px', color: '#10b981' }}>{selectedUser.totalCompletedBookings}</div>
                 </div>
                 <div className="glass" style={{ flex: 1, padding: '1rem', textAlign: 'center', borderRadius: '12px' }}>
-                  <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>Cumulated Rental Time</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Cumulated Rental Time</span>
                   <div style={{ fontSize: '1.8rem', fontWeight: '800', marginTop: '5px', color: '#3b82f6' }}>{selectedUser.totalRentalDays} <span style={{ fontSize: '0.9rem' }}>days</span></div>
                 </div>
               </div>
 
               {/* Booking History Table */}
-              <h3 style={{ fontSize: '1.15rem', fontWeight: '700', marginBottom: '1rem', color: '#f9fafb' }}>Customer Booking History Ledger</h3>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--text-primary)' }}>Customer Booking History Ledger</h3>
               <div className="table-card glass" style={{ border: '1px solid var(--border)' }}>
                 <table className="table" style={{ fontSize: '0.85rem' }}>
                   <thead>
@@ -294,7 +294,7 @@ const RentalHistory = () => {
                   <tbody>
                     {selectedUser.history.map((h, idx) => (
                       <tr key={idx}>
-                        <td><strong style={{ color: '#60a5fa' }}>{h.bookingId}</strong></td>
+                        <td><strong style={{ color: 'var(--accent-light)' }}>{h.bookingId}</strong></td>
                         <td>{h.carName}</td>
                         <td>
                           {new Date(h.pickupDate).toLocaleDateString()} to {new Date(h.returnDate).toLocaleDateString()}

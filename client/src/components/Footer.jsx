@@ -37,7 +37,7 @@ const Footer = () => {
 
           <div className="footer-links">
             <h4>Contact Info</h4>
-            <ul style={{ color: '#9ca3af', fontSize: '0.9rem' }}>
+            <ul style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               <li style={{ marginBottom: '8px' }}>
                 📍 {settings.address}
               </li>

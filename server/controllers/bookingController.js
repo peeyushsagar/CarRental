@@ -59,7 +59,11 @@ export const createBooking = async (req, res) => {
     // Calculate total price
     const diffTime = Math.abs(end - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
-    const totalAmount = diffDays * car.pricePerDay;
+    let rate = car.pricePerDay;
+    if (car.discount && car.discount > 0) {
+      rate = rate * (1 - car.discount / 100);
+    }
+    const totalAmount = Math.round(diffDays * rate);
 
     // Generate unique booking ID
     const count = await Booking.countDocuments({});

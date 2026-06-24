@@ -139,7 +139,7 @@ const BusinessSettingsPage = () => {
 
               <div className="form-group">
                 <label>Office Address</label>
-                <textarea rows="3" required value={address} onChange={(e) => setAddress(e.target.value)} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '12px', color: '#fff', padding: '12px 16px', outline: 'none', fontFamily: 'inherit', fontSize: '0.95rem' }}></textarea>
+                <textarea rows="3" required value={address} onChange={(e) => setAddress(e.target.value)} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '12px', color: 'var(--text-primary)', padding: '12px 16px', outline: 'none', fontFamily: 'inherit', fontSize: '0.95rem' }}></textarea>
               </div>
 
               <div className="form-row">

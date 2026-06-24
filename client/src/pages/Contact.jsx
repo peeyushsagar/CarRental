@@ -29,18 +29,18 @@ const Contact = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div className="glass" style={{ padding: '2rem' }}>
             <h3 style={{ margin: '0.8rem 0 0.4rem 0', fontWeight: '700' }}>Office Location</h3>
-            <p style={{ color: '#9ca3af', fontSize: '0.95rem' }}>{settings.address}</p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>{settings.address}</p>
           </div>
 
           <div className="glass" style={{ padding: '2rem' }}>
             <h3 style={{ margin: '0.8rem 0 0.4rem 0', fontWeight: '700' }}>Call Us</h3>
-            <p style={{ color: '#9ca3af', fontSize: '0.95rem' }}>{settings.phone}</p>
-            <p style={{ color: '#6b7280', fontSize: '0.8rem' }}>Mon-Sun: 24 Hours Availability</p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>{settings.phone}</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Mon-Sun: 24 Hours Availability</p>
           </div>
 
           <div className="glass" style={{ padding: '2rem' }}>
             <h3 style={{ margin: '0.8rem 0 0.4rem 0', fontWeight: '700' }}>Write to Us</h3>
-            <p style={{ color: '#60a5fa', fontSize: '0.95rem', fontWeight: '600' }}>{settings.email}</p>
+            <p style={{ color: 'var(--accent-light)', fontSize: '0.95rem', fontWeight: '600' }}>{settings.email}</p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ const Contact = () => {
 
             <div className="form-group">
               <label>Message Details</label>
-              <textarea rows="5" required placeholder="Describe your query..." value={message} onChange={(e) => setMessage(e.target.value)} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '12px', color: '#fff', padding: '12px 16px', outline: 'none', fontFamily: 'inherit', fontSize: '0.95rem', resize: 'vertical' }}></textarea>
+              <textarea rows="5" required placeholder="Describe your query..." value={message} onChange={(e) => setMessage(e.target.value)} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '12px', color: 'var(--text-primary)', padding: '12px 16px', outline: 'none', fontFamily: 'inherit', fontSize: '0.95rem', resize: 'vertical' }}></textarea>
             </div>
 
             <button type="submit" className="btn-full" style={{ marginTop: '1.5rem', padding: '14px' }}>

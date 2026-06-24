@@ -100,7 +100,7 @@ const Profile = () => {
   return (
     <div className="container animate-fade-in" style={{ maxWidth: '650px', padding: '2rem 1rem' }}>
       <h1 className="page-title" style={{ textAlign: 'left', marginBottom: '0.5rem' }}>Account Settings</h1>
-      <p style={{ color: '#9ca3af', marginBottom: '2rem' }}>Manage your mobile number and account status</p>
+      <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Manage your mobile number and account status</p>
 
       {/* Account Info Card */}
       <div className="glass" style={{ padding: '2rem', borderRadius: '16px', marginBottom: '2rem', border: '1px solid var(--border)' }}>
@@ -120,7 +120,7 @@ const Profile = () => {
           </div>
           <div>
             <h2 style={{ fontSize: '1.4rem', fontWeight: '700', margin: 0 }}>{user.name}</h2>
-            <span style={{ fontSize: '0.9rem', color: '#9ca3af' }}>{user.email}</span>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{user.email}</span>
             <span className="car-badge badge-available" style={{ display: 'inline-block', position: 'static', marginLeft: '10px', textTransform: 'uppercase', fontSize: '0.75rem', padding: '2px 8px' }}>
               {user.role}
             </span>
@@ -131,7 +131,7 @@ const Profile = () => {
 
         {/* Upload Profile Photo */}
         <form onSubmit={handleUploadPhoto} style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '1.5rem' }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: '#f3f4f6' }}>Profile Photo</h3>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--text-primary)' }}>Profile Photo</h3>
           {successMsg && <div className="alert alert-success" style={{ padding: '10px 15px', marginBottom: '1rem' }}>{successMsg}</div>}
           {errorMsg && <div className="alert alert-danger" style={{ padding: '10px 15px', marginBottom: '1rem' }}>{errorMsg}</div>}
 
@@ -140,7 +140,7 @@ const Profile = () => {
               type="file" 
               accept="image/*" 
               onChange={handlePhotoChange} 
-              style={{ background: 'none', border: 'none', padding: 0, color: '#9ca3af' }}
+              style={{ background: 'none', border: 'none', padding: 0, color: 'var(--text-secondary)' }}
             />
             {photoFile && (
               <button type="submit" className="nav-btn nav-btn-primary" style={{ padding: '8px 16px', fontSize: '0.85rem' }} disabled={isUploadingPhoto}>
@@ -152,7 +152,7 @@ const Profile = () => {
 
         {/* Change Mobile Form */}
         <form onSubmit={handleUpdatePhone}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: '#f3f4f6' }}>Contact Information</h3>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--text-primary)' }}>Contact Information</h3>
           
           <div className="form-group" style={{ marginBottom: '1.5rem' }}>
             <label htmlFor="profilePhone">Mobile Number</label>
@@ -176,7 +176,7 @@ const Profile = () => {
       {/* Account Deletion Section */}
       <div className="glass" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid #ef444433', background: 'rgba(239, 68, 68, 0.02)' }}>
         <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#ef4444', marginBottom: '0.5rem' }}>Danger Zone</h3>
-        <p style={{ color: '#9ca3af', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
           Once you request deletion of your account, you will lose access to all your bookings, settings, and credentials permanently.
         </p>
 
@@ -206,9 +206,9 @@ const Profile = () => {
         <div className="modal-backdrop" onClick={() => setShowDeleteModal(false)} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="glass animate-fade-in" onClick={(e) => e.stopPropagation()} style={{ width: '90%', maxWidth: '450px', borderRadius: '16px', border: '1px solid var(--border)', padding: '2rem' }}>
             <h3 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#ef4444', marginBottom: '1rem' }}>Confirm Account Deletion Request</h3>
-            <p style={{ color: '#9ca3af', fontSize: '0.9rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
               Are you absolutely sure? This will send a formal request to the system administrators to delete your profile permanently. 
-              To proceed, please type <strong style={{ color: '#f9fafb' }}>DELETE</strong> below.
+              To proceed, please type <strong style={{ color: 'var(--text-primary)' }}>DELETE</strong> below.
             </p>
 
             {deleteError && <div className="alert alert-danger" style={{ padding: '8px 12px', fontSize: '0.85rem', marginBottom: '1rem' }}>{deleteError}</div>}

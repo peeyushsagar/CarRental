@@ -21,6 +21,7 @@ const ManageCars = () => {
   const [pricePerDay, setPricePerDay] = useState('');
   const [status, setStatus] = useState('available');
   const [color, setColor] = useState('');
+  const [discount, setDiscount] = useState(0);
   
   // Image Upload states
   const [uploadingCarId, setUploadingCarId] = useState(null);
@@ -55,6 +56,7 @@ const ManageCars = () => {
     setPricePerDay('');
     setStatus('available');
     setColor('');
+    setDiscount(0);
     setSelectedFiles([]);
     setShowForm(true);
     setMsg('');
@@ -72,6 +74,7 @@ const ManageCars = () => {
     setPricePerDay(car.pricePerDay);
     setStatus(car.status);
     setColor(car.color || '');
+    setDiscount(car.discount || 0);
     setSelectedFiles([]);
     setShowForm(true);
     setMsg('');
@@ -129,6 +132,7 @@ const ManageCars = () => {
       transmission,
       pricePerDay: Number(pricePerDay),
       color,
+      discount: Number(discount),
       status,
     };
 
@@ -229,7 +233,7 @@ const ManageCars = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <div>
             <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>Manage Vehicles</h1>
-            <p style={{ color: '#9ca3af' }}>Add, update, or remove fleet cars, and set maintenance status</p>
+            <p style={{ color: 'var(--text-secondary)' }}>Add, update, or remove fleet cars, and set maintenance status</p>
           </div>
           <button onClick={handleOpenAdd} className="nav-btn nav-btn-primary" style={{ height: '42px' }}>
             Add New Car
@@ -309,6 +313,10 @@ const ManageCars = () => {
                   <label>Car Color</label>
                   <input type="text" placeholder="e.g. Red, Black, White" value={color} onChange={(e) => setColor(e.target.value)} />
                 </div>
+                <div className="form-group">
+                  <label>Discount (%)</label>
+                  <input type="number" min="0" max="100" placeholder="e.g. 10 for 10% off" value={discount} onChange={(e) => setDiscount(e.target.value)} />
+                </div>
               </div>
 
 
@@ -325,17 +333,16 @@ const ManageCars = () => {
                     borderRadius: '12px',
                     padding: '12px',
                     width: '100%',
-                    color: '#fff',
-                    outline: 'none',
+                    color: 'var(--text-primary)', outline: 'none',
                     fontSize: '0.9rem'
                   }}
                 />
-                <p style={{ fontSize: '0.78rem', color: '#9ca3af', marginTop: '6px' }}>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '6px' }}>
                   {editingCar ? 'Add new images to this vehicle.' : 'Upload one or more images for this vehicle.'}
                 </p>
 
                 {selectedFiles && selectedFiles.length > 0 && (
-                  <div style={{ marginTop: '10px', fontSize: '0.82rem', color: '#60a5fa' }}>
+                  <div style={{ marginTop: '10px', fontSize: '0.82rem', color: 'var(--accent-light)' }}>
                     Selected for upload: {selectedFiles.length} file(s)
                   </div>
                 )}
@@ -413,13 +420,21 @@ const ManageCars = () => {
                   <tr key={car._id}>
                     <td>
                       <strong>{car.brand} {car.name}</strong>
-                      <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>{car.model} ({car.year}) | Color: {car.color || 'Unspecified'}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{car.model} ({car.year}) | Color: {car.color || 'Unspecified'}</div>
                     </td>
                     <td>
                       {car.fuelType} / {car.transmission}
                     </td>
                     <td style={{ fontWeight: '600', color: '#10b981' }}>
-                      ₹{car.pricePerDay}
+                      {car.discount > 0 ? (
+                        <div>
+                          <span style={{ textDecoration: 'line-through', color: 'var(--text-secondary)', fontSize: '0.85rem', marginRight: '6px' }}>₹{car.pricePerDay}</span>
+                          <span>₹{Math.round(car.pricePerDay * (1 - car.discount / 100))}</span>
+                          <span style={{ fontSize: '0.75rem', background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px' }}>{car.discount}% off</span>
+                        </div>
+                      ) : (
+                        <span>₹{car.pricePerDay}</span>
+                      )}
                     </td>
                     <td>
                       <span className={`car-badge badge-${car.status}`} style={{ position: 'static' }}>
